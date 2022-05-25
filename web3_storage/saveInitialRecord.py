@@ -1,4 +1,6 @@
 import json
+# from matplotlib.font_manager import _Weight
+import currentIdCounter
 import solcx
 import os
 import csv
@@ -42,9 +44,24 @@ private_key = os.getenv("PRIVATE_KEY")
 # create the contract for initial record
 InitialRecord = w3.eth.contract(abi=initial_record_abi, bytecode=initial_record_bytecode)
 
+
+#getting inputs
+patientId = int(currentIdCounter.get_current_id())
+name = str(input("enter name: "))
+age = int(input("enter age: "))
+weight = int(input("enter weight: "))
+height = int(input("height: "))
+female = bool(input("female?: "))
+blood_pressure = int(input("blood pressure: "))
+blood_glucose = int(input("blood glucose: "))
+pulse = int(input("pulse: "))
+oxygen_level = int(input("oxygen level: "))
+
+
+
 # Build, Sign, Send the transaction
 nonce = w3.eth.getTransactionCount(my_address)
-initial_record_transaction = InitialRecord.constructor(1,"salma",22,66,111,True,120,120,77,99).buildTransaction({
+initial_record_transaction = InitialRecord.constructor(patientId,name,age,weight,height,female,blood_pressure,blood_glucose,pulse,oxygen_level).buildTransaction({
     "gasPrice": w3.eth.gas_price, "chainId": chain_id, "from": my_address, "nonce": nonce
 })
 signed_initial_record_trnxn = w3.eth.account.sign_transaction(initial_record_transaction, private_key=private_key)
@@ -58,51 +75,4 @@ print(initial_record_abi)
 # we need Contract Address, Contract ABI
 initial_record = w3.eth.contract(address=initial_record_trnxn_receipt.contractAddress, abi=initial_record_abi)
 # print(initial_record_abi)
-
-
-# start to deploy VisitRecord.sol
-with open("./VisitRecord.sol", "r") as file:
-    visit_record_file =file.read()
-
-compiled_sol_v = compile_standard(
-    {"language" : "Solidity",
-    "sources":{"VisitRecord.sol":{"content":visit_record_file}},
-    "settings":{
-        "outputSelection":{
-            "*":{"*":["abi", "metadata", "evm.bytecode", "evm.sourceMap"]}
-        }
-    },
-    },
-    solc_version = "0.8.0",
-
-)
-
-
-
-with open("compiled_visit_record.json", "w") as file:
-    json.dump(compiled_sol_v,file)
-
-
-# bytecode visit record
-visit_record_bytecode = compiled_sol_v["contracts"]["VisitRecord.sol"]["VisitRecord"]["evm"]["bytecode"]["object"]
-# abi visit record
-visit_record_abi = compiled_sol_v["contracts"]["VisitRecord.sol"]["VisitRecord"]["abi"]
-
-# create the contract for visit record
-VisitRecord = w3.eth.contract(abi=visit_record_abi, bytecode=visit_record_bytecode)
-
-# Build, Sign, Send the transaction
-nonce = w3.eth.getTransactionCount(my_address)
-visit_record_transaction = VisitRecord.constructor().buildTransaction({
-    "gasPrice": w3.eth.gas_price, "chainId": chain_id, "from": my_address, "nonce": nonce
-})
-signed_visit_record_trnxn = w3.eth.account.sign_transaction(visit_record_transaction, private_key=private_key)
-hashed_visit_record_trnxn = w3.eth.send_raw_transaction(signed_visit_record_trnxn.rawTransaction)
-visit_record_trnxn_receipt = w3.eth.wait_for_transaction_receipt(hashed_visit_record_trnxn)
-print("VISIT.....")
-print(visit_record_trnxn_receipt)
-# Work with the visit record contract
-# we need Contract Address, Contract ABI
-visit_record = w3.eth.contract(address=visit_record_trnxn_receipt.contractAddress, abi=visit_record_abi)
-print(visit_record.functions.readRecord().call())
-
+currentIdCounter.increment_current_id()

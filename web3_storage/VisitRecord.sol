@@ -12,6 +12,7 @@ contract VisitRecord{
     string referrals;
     string followUp;
     string labTests; //cbc, freet3
+    string previousRecordHash;
     Measurements measurements;
    }
 
@@ -33,6 +34,7 @@ contract VisitRecord{
     string memory _referrals,
     string memory _followUp,
     string memory _labTests,
+    string memory _previousRecordHash,
     Measurements memory measurements
    ) external{
     visit.patientId = _patientId;
@@ -44,6 +46,7 @@ contract VisitRecord{
     visit.referrals =     _referrals;
     visit.followUp =     _followUp;
     visit.labTests =     _labTests; 
+    visit.previousRecordHash = _previousRecordHash;
     visit.measurements.initialBloodPressure =     measurements.initialBloodPressure;
     visit.measurements.initialBloodGlucose =     measurements.initialBloodGlucose;
     visit.measurements.initialPulse =     measurements.initialPulse;
