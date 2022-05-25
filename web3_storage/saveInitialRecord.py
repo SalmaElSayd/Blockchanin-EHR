@@ -1,5 +1,5 @@
 import json
-# from matplotlib.font_manager import _Weight
+import hashRecordTracker
 import currentIdCounter
 import solcx
 import os
@@ -70,9 +70,11 @@ initial_record_trnxn_receipt = w3.eth.wait_for_transaction_receipt(hashed_initia
 print("INITIAL.....")
 print(initial_record_trnxn_receipt)
 print(initial_record_abi)
+hash = initial_record_trnxn_receipt['transactionHash'].hex()
 
 # Work with the initial record contract
 # we need Contract Address, Contract ABI
 initial_record = w3.eth.contract(address=initial_record_trnxn_receipt.contractAddress, abi=initial_record_abi)
 # print(initial_record_abi)
 currentIdCounter.increment_current_id()
+hashRecordTracker.set_patient_hash(int(patientId),hash)
