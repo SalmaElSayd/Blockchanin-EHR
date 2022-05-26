@@ -2,6 +2,7 @@ import json
 import solcx
 import os
 import csv
+from saveInitialRecord import initial_record
 from dotenv import load_dotenv
 load_dotenv()
 from web3 import Web3
@@ -44,6 +45,7 @@ InitialRecord = w3.eth.contract(abi=initial_record_abi, bytecode=initial_record_
 
 # Build, Sign, Send the transaction
 nonce = w3.eth.getTransactionCount(my_address)
+patient = initial_record(1,"salma",22,66,111,True,120,120,77,99)
 initial_record_transaction = InitialRecord.constructor(1,"salma",22,66,111,True,120,120,77,99).buildTransaction({
     "gasPrice": w3.eth.gas_price, "chainId": chain_id, "from": my_address, "nonce": nonce
 })

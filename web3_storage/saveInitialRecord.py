@@ -9,6 +9,49 @@ from web3 import Web3
 solcx.install_solc('0.8.0') 
 from solcx import compile_standard
 
+class initial_record:
+    def __init__(self,patientId,name,age,weight,height,female,blood_pressure,blood_glucose,pulse,oxygen_level ):
+        self.patientId = patientId
+        self.name = name
+        self.age = age
+        self.weight = weight
+        self.height = height
+        self.female = female
+        self.blood_pressure = blood_pressure
+        self.blood_glucose = blood_glucose
+        self.pulse = pulse
+        self.oxygen_level = oxygen_level
+
+    def to_string(self):
+        return (str(self.patientId)+"," + 
+        self.name+"," +
+        str(self.age)+"," +
+        str(self.weight)+"," +
+        str(self.height)+"," +
+        str(self.female)+"," +
+        str(self.blood_pressure)+"," +
+        str(self.blood_glucose)+"," +
+        str(self.pulse)+"," +
+        str(self.oxygen_level))
+
+    def to_byte(self):
+        return bytes(self.to_string(),"UTF-8") 
+    
+    def string2obj(self, data):
+        patientId,name,age,weight,height,female,blood_pressure,blood_glucose,pulse,oxygen_level = data.split(",")
+        self.patientId = patientId
+        self.name = name
+        self.age = age
+        self.weight = weight
+        self.height = height
+        self.female = female
+        self.blood_pressure = blood_pressure
+        self.blood_glucose = blood_glucose
+        self.pulse = pulse
+        self.oxygen_level = oxygen_level
+
+
+
 # start to deploy InitialRecord.sol
 with open("./InitialRecord.sol", "r") as file:
     initial_record_file =file.read()    
@@ -44,7 +87,7 @@ private_key = os.getenv("PRIVATE_KEY")
 InitialRecord = w3.eth.contract(abi=initial_record_abi, bytecode=initial_record_bytecode)
 
 
-#getting inputs
+# getting inputs
 patientId = int(currentIdCounter.get_current_id())
 name = str(input("enter name: "))
 age = int(input("enter age: "))
@@ -57,10 +100,10 @@ pulse = int(input("pulse: "))
 oxygen_level = int(input("oxygen level: "))
 
 
-
+patient = initial_record(patientId,name,age,weight,height,female,blood_pressure,blood_glucose,pulse,oxygen_level)
 # Build, Sign, Send the transaction
 nonce = w3.eth.getTransactionCount(my_address)
-initial_record_transaction = InitialRecord.constructor(patientId,name,age,weight,height,female,blood_pressure,blood_glucose,pulse,oxygen_level).buildTransaction({
+initial_record_transaction = InitialRecord.constructor(patient.to_byte()).buildTransaction({
     "gasPrice": w3.eth.gas_price, "chainId": chain_id, "from": my_address, "nonce": nonce
 })
 signed_initial_record_trnxn = w3.eth.account.sign_transaction(initial_record_transaction, private_key=private_key)
