@@ -3,7 +3,6 @@ import hashRecordTracker
 import currentIdCounter
 import solcx
 import os
-import csv
 from dotenv import load_dotenv
 load_dotenv()
 from web3 import Web3
