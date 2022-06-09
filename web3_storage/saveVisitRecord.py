@@ -1,3 +1,4 @@
+from mimetypes import init
 import rsa
 from solcx import compile_standard
 from web3 import Web3
@@ -66,7 +67,7 @@ class visit_record:
 # connect to blockchain ganache
 w3 = Web3(Web3.HTTPProvider("http://127.0.0.1:7545"))
 chain_id = 1337
-my_address = "0x4b4ADE8a7d63ae6710cb5b05782385357694f1A0"
+my_address =os.getenv("ADDRESS")
 private_key = os.getenv("PRIVATE_KEY")
 
 patientId = int(input("enter patient id: "))
@@ -88,9 +89,11 @@ oxygen_level = int(input("oxygen level: "))
 # Public Key input
 n = int(input("Public key (n): "))
 e = int(input("Public key (e): "))
-
-previous_record_hash = hashRecordTracker.get_patient_hash(patientId)
-
+try:
+    previous_record_hash = hashRecordTracker.get_patient_hash(patientId)
+except:
+    print("no initial record for this patient")
+    exit
 # start to deploy VisitRecord.sol
 with open("./VisitRecord.sol", "r") as file:
     visit_record_file = file.read()

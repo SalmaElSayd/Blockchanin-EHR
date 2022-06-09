@@ -1,0 +1,276 @@
+<html>
+<head>
+
+    <link rel="stylesheet" href="/static/style.css" />
+    <link rel="stylesheet" href="/static/style2.css" />
+
+    <title>Research Application Form</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+</head>
+<body>
+<div class="wrapper">
+    <div class="tabs">
+      <div class="tab">
+        <input type="radio" name="css-tabs" id="tab-1" checked class="tab-switch">
+        <label for="tab-1" class="tab-label">Save Initial Record</label>
+        <div class="tab-content">
+            <form action = "http://localhost:5000/postInitialRecord" method = "post">
+                <table>
+                    <tr>
+                        <td>
+                            <div class="item">
+                                <p>Enter Name:</p>
+                                <p><input type = "text" name = "name" /></p>
+                                </div>
+                        </td>
+                        <td>
+                            <div class="item">
+                                <p>Enter Age:</p>
+                                <p><input type = "number" name = "age" /></p>
+                                </div>
+                        </td>
+                    </tr>
+                <tr>
+                    
+                    <td>
+                        <div class="item">
+                            <p>Enter Weight:</p>
+                            <p><input type = "number" name = "weight" /></p>
+                            </div>
+                    </td>
+                    <td>
+                        <div class="item">
+                            <p>Enter Height:</p>
+                            <p><input type = "number" name = "height" /></p>
+                            </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="item">
+                            <p>Enter Female:</p>
+                            <p><input type = "number" name = "female" /></p>
+                            </div>
+                    </td>
+                    <td>
+                        <div class="item">
+                            <p>Enter blood_pressure:</p>
+                            <p><input type = "number" name = "blood_pressure" /></p>
+                            </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="item">
+                            <p>Enter blood_glucose:</p>
+                            <p><input type = "number" name = "blood_glucose" /></p>
+                            </div>
+                    </td>
+                    <td>
+                        <div class="item">
+                            <p>Enter pulse:</p>
+                            <p><input type = "number" name = "pulse" /></p>
+                            </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+
+                        <div class="item">
+                            <p>Enter oxygen_level:</p>
+                            <p><input type = "number" name = "oxygen_level" /></p>
+                            </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+
+                        <div class="btn-block">
+                            <p><input type = "submit" value = "submit" /></p>
+                            </div>
+                    </td>
+                </tr>
+
+                </table>
+                
+             </form>    
+        
+        </div>
+      </div>
+      <div class="tab">
+        <input type="radio" name="css-tabs" id="tab-2" class="tab-switch">
+        <label for="tab-2" class="tab-label">Save Visit Record</label>
+        <div class="tab-content">
+            <form action = "http://localhost:5000/postVisitRecord" method = "post">
+            <table>
+                <tr>
+                    <td>
+                        <div class="item">
+                            <p>Enter ID:</p>
+                            <p><input type = "number" name = "patientId" /></p>
+                            </div>
+                    </td>
+                    <td>
+                        <div class="item">
+                            <p>Enter Age:</p>
+                            <p><input type = "number" name = "age" /></p>
+                            </div>
+                    </td>
+                </tr>
+            <tr>
+                
+                <td>
+                    <div class="item">
+                        <p>Enter Weight:</p>
+                        <p><input type = "number" name = "weight" /></p>
+                        </div>
+                </td>
+                <td>
+                    <div class="item">
+                        <p>Enter Height:</p>
+                        <p><input type = "number" name = "height" /></p>
+                        </div>
+                </td>
+            </tr>
+            <tr>
+                
+                <td>
+                    <div class="item">
+                        <p>Enter Reason for Visit:</p>
+                        <p><input type = "text" name = "reason" /></p>
+                        </div>
+                </td>
+                <td>
+                    <div class="item">
+                        <p>Enter Diagnosis:</p>
+                        <p><input type = "text" name = "diagnosis" /></p>
+                        </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="item">
+                        <p>Enter Required Referrals:</p>
+                        <p><input type = "text" name = "referrals" /></p>
+                        </div>
+                </td>
+                <td>
+                    <div class="item">
+                        <p>Enter Follow-up Date:</p>
+                        <p><input type = "date" name = "follow_up" /></p>
+                        </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="item">
+                        <p>Enter Required Lab Tests:</p>
+                        <p><input type = "text" name = "lab_tests" /></p>
+                        </div>
+                </td>
+                <td>
+                    <div class="item">
+                        <p>Enter blood_pressure:</p>
+                        <p><input type = "number" name = "blood_pressure" /></p>
+                        </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="item">
+                        <p>Enter blood_glucose:</p>
+                        <p><input type = "number" name = "blood_glucose" /></p>
+                        </div>
+                </td>
+                <td>
+                    <div class="item">
+                        <p>Enter pulse:</p>
+                        <p><input type = "number" name = "pulse" /></p>
+                        </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+
+                    <div class="item">
+                        <p>Enter oxygen_level:</p>
+                        <p><input type = "number" name = "oxygen_level" /></p>
+                        </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+
+                    <div class="btn-block">
+                        <p><input type = "submit" value = "submit" /></p>
+                        </div>
+                </td>
+            </tr>
+
+            </table>
+            
+         </form>     </div>
+      </div>
+      <!-- <div class="tab">
+        <input type="radio" name="css-tabs" id="tab-3" class="tab-switch">
+        <label for="tab-3" class="tab-label">Get Initial Record</label>
+        <div class="tab-content">
+            <form action = "http://localhost:5000/readInitial" method = "post">
+                <table>
+                    <tr>
+                        <td>
+        
+                            <div class="item">
+                                <p>Enter Patient ID:</p>
+                                <p><input type = "number" name = "patientId" /></p>
+                                </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="btn-block">
+                                <p><input type = "submit" value = "submit" /></p>
+                                </div>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+      </div> -->
+      <div class="tab">
+        <input type="radio" name="css-tabs" id="tab-4" class="tab-switch">
+        <label for="tab-4" class="tab-label">Get Patient Records</label>
+        <div class="tab-content">
+        <form action = "http://localhost:5000/readVisit" method = "post">
+            <table>
+                <tr>
+                    <td>
+    
+                        <div class="item">
+                            <p>Enter Patient ID:</p>
+                            <p><input type = "number" name = "patientId" /></p>
+                            </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="btn-block">
+                            <p><input type = "submit" value = "submit" /></p>
+                            </div>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+      </div>
+    </div>
+
+  </div>
+  <div>
+   
+    <h3>{{res}}</h3>
+  </div>
+ 
+  </body>
+</html>

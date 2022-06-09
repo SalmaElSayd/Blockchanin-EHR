@@ -56,7 +56,7 @@ my_address = "0x4b4ADE8a7d63ae6710cb5b05782385357694f1A0"
 private_key = os.getenv("PRIVATE_KEY")
 
 # Getting the patient Id as input
-patient_id = input('Enter Patient ID: ')
+patient_id = int(input('Enter Patient ID: '))
 
 # Getting the patient info
 try:
@@ -82,7 +82,7 @@ else:
 
         # Reading the latest initial record
         enc_rec = InitialRecordContract.functions.readRecord().call()
-
+        print(enc_rec)
         # Decrypting the record using the private key
         dr_private_key = rsa.PrivateKey(int(os.getenv("N")), int(os.getenv(
             "E")), int(os.getenv("D")), int(os.getenv("P")), int(os.getenv("Q")))

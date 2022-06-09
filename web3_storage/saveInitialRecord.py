@@ -82,7 +82,7 @@ initial_record_abi = compiled_sol["contracts"]["InitialRecord.sol"]["InitialReco
 # connect to blockchain ganache
 w3 = Web3(Web3.HTTPProvider("http://127.0.0.1:7545"))
 chain_id = 1337
-my_address = "0x4b4ADE8a7d63ae6710cb5b05782385357694f1A0"
+my_address =os.getenv("ADDRESS")
 private_key = os.getenv("PRIVATE_KEY")
 
 # create the contract for initial record
@@ -138,6 +138,7 @@ initial_record = w3.eth.contract(
 # print(initial_record_abi)
 currentIdCounter.increment_current_id()
 hashRecordTracker.set_patient_hash(int(patientId), hash)
+print("New Patient ID: "+str(patientId))
 
 # Reading the record with encryption (Reem)
 # print('Reading the initial record .....')
