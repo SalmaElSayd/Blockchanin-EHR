@@ -1,3 +1,9 @@
 py -m venv blockchain
 .\blockchain\Scripts\activate
 pip install web3
+pip install py-solc-x
+pip install rsa
+pip install python-dotenv
+pip install os-win
+pip install flask
+pip install pandas

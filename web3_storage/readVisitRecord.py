@@ -115,8 +115,10 @@ else:
         try:
             # Reading the latest visit record
             enc_rec = VisitRecordContract.functions.readRecord().call()
+            print(enc_rec)
         except:
             enc_rec = InitialRecordContract.functions.readRecord().call()
+            print(enc_rec)
             reached_end = True
             # break
 
