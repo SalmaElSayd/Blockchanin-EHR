@@ -41,3 +41,8 @@ The following figure illustrates how the blockchain would look like after adding
 - Ethereum
 - Solidity
 - Web3
+- Flask
+
+## UI templates
+https://www.w3docs.com/learn-html/html-form-templates.html
+https://alvarotrigo.com/blog/html-css-tabs/
