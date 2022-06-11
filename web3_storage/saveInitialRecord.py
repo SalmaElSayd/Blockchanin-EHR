@@ -6,6 +6,7 @@ import currentIdCounter
 import solcx
 import os
 import rsa
+import verify_dr
 from dotenv import load_dotenv
 load_dotenv()
 solcx.install_solc('0.8.0')
@@ -89,9 +90,19 @@ private_key = os.getenv("PRIVATE_KEY")
 InitialRecord = w3.eth.contract(
     abi=initial_record_abi, bytecode=initial_record_bytecode)
 
+dr_email = str(input("Enter Dr Email: "))
+dr_pass = str(input("Enter Dr password: "))
+verified = verify_dr.__main__(dr_email, dr_pass)
+if(not verified):
+    print("Healthcare professional not verified")
+    quit()
+else:
+    print("Healthcare professional successfully verified")
+
+
 
 # getting inputs
-patientId = int(currentIdCounter.get_current_id())
+patientId = currentIdCounter.get_current_id()
 name = str(input("enter name: "))
 age = int(input("enter age: "))
 weight = int(input("enter weight: "))
@@ -102,10 +113,11 @@ blood_glucose = int(input("blood glucose: "))
 pulse = int(input("pulse: "))
 oxygen_level = int(input("oxygen level: "))
 
-# Public Key input
-n = int(input("Public key (n): "))
-e = int(input("Public key (e): "))
-
+# # Public Key input
+# n = int(input("Public key (n): "))
+# e = int(input("Public key (e): "))
+n=int(os.getenv('N'))
+e=int(os.getenv('E'))
 
 patient = initial_record(patientId, name, age, weight, height,
                          female, blood_pressure, blood_glucose, pulse, oxygen_level)

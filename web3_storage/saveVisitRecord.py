@@ -8,6 +8,7 @@ import hashRecordTracker
 import os
 import csv
 from dotenv import load_dotenv
+import verify_dr
 load_dotenv()
 solcx.install_solc('0.8.0')
 
@@ -70,6 +71,16 @@ chain_id = 1337
 my_address =os.getenv("ADDRESS")
 private_key = os.getenv("PRIVATE_KEY")
 
+dr_email = str(input("Enter Dr Email: "))
+dr_pass = str(input("Enter Dr password: "))
+verified = verify_dr.__main__(dr_email, dr_pass)
+if(not verified):
+    print("Healthcare professional not verified")
+    quit()
+else:
+    print("Healthcare professional successfully verified")
+
+
 patientId = int(input("enter patient id: "))
 age = int(input("enter age: "))
 weight = int(input("enter weight: "))
@@ -87,8 +98,11 @@ pulse = int(input("pulse: "))
 oxygen_level = int(input("oxygen level: "))
 
 # Public Key input
-n = int(input("Public key (n): "))
-e = int(input("Public key (e): "))
+# n = int(input("Public key (n): "))
+# e = int(input("Public key (e): "))
+n=int(os.getenv('N'))
+e=int(os.getenv('E'))
+
 try:
     previous_record_hash = hashRecordTracker.get_patient_hash(patientId)
 except:

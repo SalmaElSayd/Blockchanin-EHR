@@ -1,7 +1,14 @@
+import rsa
+import os
+from dotenv import load_dotenv
+
 def get_current_id():
     f = open('idCounter.txt','r')
-    id = int(f.readline())
+    id = f.readline()
     f.close()
+    load_dotenv()
+    print(id)
+    print(type(id))
     return id
 
 def increment_current_id():
