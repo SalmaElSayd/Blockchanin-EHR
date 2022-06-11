@@ -1,6 +1,5 @@
-
 class visit_record:
-    def __init__(self, patientId, age, weight, height, reason, diagnosis, referrals, follow_up, lab_tests, blood_pressure, blood_glucose, pulse, oxygen_level):
+    def __init__(self, patientId, age, weight, height, reason, diagnosis, referrals, follow_up, lab_tests, blood_pressure, blood_glucose, pulse, oxygen_level,lab_test_results):
         self.patientId = patientId
         self.age = age
         self.weight = weight
@@ -14,6 +13,7 @@ class visit_record:
         self.blood_glucose = blood_glucose
         self.pulse = pulse
         self.oxygen_level = oxygen_level
+        self.lab_test_results = lab_test_results
 
     def to_string(self):
         return (str(self.patientId)+"," +
@@ -28,13 +28,14 @@ class visit_record:
                 str(self.blood_pressure)+"," +
                 str(self.blood_glucose)+"," +
                 str(self.pulse)+"," +
-                str(self.oxygen_level))
+                str(self.oxygen_level)+ ","+
+                str(self.lab_test_results))
 
     def to_byte(self):
         return bytes(self.to_string(), "UTF-8")
 
     def string2obj(self, data):
-        patientId, age, weight, height, reason, diagnosis, referrals, follow_up, lab_tests, blood_pressure, blood_glucose, pulse, oxygen_level = data.split(
+        patientId, age, weight, height, reason, diagnosis, referrals, follow_up, lab_tests, blood_pressure, blood_glucose, pulse, oxygen_level, lab_test_results= data.split(
             ",")
         self.patientId = patientId
         self.age = age
@@ -49,3 +50,5 @@ class visit_record:
         self.blood_glucose = blood_glucose
         self.pulse = pulse
         self.oxygen_level = oxygen_level
+        self.lab_test_results = lab_test_results
+

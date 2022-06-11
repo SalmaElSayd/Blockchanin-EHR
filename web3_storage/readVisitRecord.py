@@ -58,7 +58,8 @@ def print_visit_record(rec_list):
         'Blood Pressure: ' + str(rec_list[9]) + '\n' + \
         'Blood Glucose: ' + str(rec_list[10]) + '\n' + \
         'Pulse: ' + str(rec_list[11]) + '\n' + \
-        'Oxygen Level: ' + str(rec_list[12])
+        'Oxygen Level: ' + str(rec_list[12])+ '\n' + \
+        'Lab Test Results: ' + str(rec_list[13])
 
 
 def print_init_record(rec_list):

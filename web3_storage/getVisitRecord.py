@@ -29,8 +29,6 @@ def print_init_record(rec_list):
             'Blood Glucose: ' + str(rec_list[7]) + '\n' + \
             'Pulse: ' + str(rec_list[8]) + '\n' + \
             'Oxygen Level: ' + str(rec_list[9])
-
-
 # Function that prints the visit record in a readable way
 def print_visit_record(rec_list):
     return 'Age: ' + str(rec_list[1]) + '\n' + \
@@ -44,7 +42,9 @@ def print_visit_record(rec_list):
         'Blood Pressure: ' + str(rec_list[9]) + '\n' + \
         'Blood Glucose: ' + str(rec_list[10]) + '\n' + \
         'Pulse: ' + str(rec_list[11]) + '\n' + \
-        'Oxygen Level: ' + str(rec_list[12])
+        'Oxygen Level: ' + str(rec_list[12])+ '\n' + \
+        'Lab Test Results: ' + str(rec_list[13])
+
 def __main__(dr_email, dr_pass,patient_id):
     load_dotenv()
     solcx.install_solc('0.8.0')
