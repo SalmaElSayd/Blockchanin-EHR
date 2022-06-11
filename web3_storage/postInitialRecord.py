@@ -7,12 +7,13 @@ import solcx
 import os
 import rsa
 from dotenv import load_dotenv
+import verify_dr
 load_dotenv()
 solcx.install_solc('0.8.0')
 
 
 
-def __main__(name,age,weight,height,female,blood_pressure,blood_glucose,pulse,oxygen_level):
+def __main__(dr_email, dr_pass,name,age,weight,height,female,blood_pressure,blood_glucose,pulse,oxygen_level):
     import Initial_Record
 
 # start to deploy InitialRecord.sol
@@ -51,8 +52,16 @@ def __main__(name,age,weight,height,female,blood_pressure,blood_glucose,pulse,ox
         abi=initial_record_abi, bytecode=initial_record_bytecode)
 
 
+    verified = verify_dr.__main__(dr_email, dr_pass)
+    if(not verified):
+        print("Healthcare professional not verified")
+        quit()
+    else:
+        print("Healthcare professional successfully verified")
+
+
     # getting inputs
-    patientId = int(currentIdCounter.get_current_id())
+    patientId = currentIdCounter.get_current_id()
     # name = str(input("enter name: "))
     # age = int(input("enter age: "))
     # weight = int(input("enter weight: "))
@@ -110,7 +119,7 @@ def __main__(name,age,weight,height,female,blood_pressure,blood_glucose,pulse,ox
         address=initial_record_trnxn_receipt.contractAddress, abi=initial_record_abi)
     # print(initial_record_abi)
     currentIdCounter.increment_current_id()
-    hashRecordTracker.set_patient_hash(int(patientId), hash)
+    hashRecordTracker.set_patient_hash(patientId, hash)
     return {'status':True,'res' :"new Initial record successfully added with Id"+ str(patientId)}
     # Reading the record with encryption (Reem)
     # print('Reading the initial record .....')

@@ -81,7 +81,7 @@ else:
     print("Healthcare professional successfully verified")
 
 
-patientId = int(input("enter patient id: "))
+patientId = str(input("enter patient id: "))
 age = int(input("enter age: "))
 weight = int(input("enter weight: "))
 height = int(input("height: "))
@@ -170,4 +170,4 @@ hash = visit_record_trnxn_receipt['transactionHash'].hex()
 #     address=visit_record_trnxn_receipt.contractAddress, abi=visit_record_abi)
 # print(visit_record.functions.readRecord().call())
 
-hashRecordTracker.set_patient_hash(int(patientId), hash)
+hashRecordTracker.set_patient_hash(patientId, hash)

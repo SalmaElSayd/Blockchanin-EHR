@@ -103,7 +103,7 @@ else:
 
 
 # Getting the patient Id as input
-patient_id = eval(input('Enter Patient ID: '))
+patient_id = str(input('Enter Patient ID: '))
 reached_end =False
 
 
@@ -112,6 +112,7 @@ try:
     curr_record_hash = hashRecordTracker.get_patient_hash(patient_id)['hash']
 except:
     print("Patient Id does not exist")
+
 else:
     while(curr_record_hash != ''):
         print("in loop")

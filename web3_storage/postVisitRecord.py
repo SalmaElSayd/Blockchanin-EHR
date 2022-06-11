@@ -7,10 +7,11 @@ import hashRecordTracker
 import os
 import csv
 from dotenv import load_dotenv
+import verify_dr
 load_dotenv()
 from Visit_Record import visit_record
 solcx.install_solc('0.8.0')
-def __main__(patientId, age, weight, height, reason, diagnosis, referrals, follow_up, lab_tests, blood_pressure, blood_glucose, pulse, oxygen_level):
+def __main__(dr_email, dr_pass,patientId, age, weight, height, reason, diagnosis, referrals, follow_up, lab_tests, blood_pressure, blood_glucose, pulse, oxygen_level):
 
     # connect to blockchain ganache
     w3 = Web3(Web3.HTTPProvider("http://127.0.0.1:7545"))
@@ -18,7 +19,7 @@ def __main__(patientId, age, weight, height, reason, diagnosis, referrals, follo
     my_address =os.getenv("ADDRESS")
     private_key = os.getenv("PRIVATE_KEY")
 
-    patientId = int(patientId)
+    patientId = str(patientId)
     age = int(age)
     weight = int(weight)
     height = int(height)
@@ -39,6 +40,13 @@ def __main__(patientId, age, weight, height, reason, diagnosis, referrals, follo
     # e = int(input("Public key (e): "))
     n = int(os.getenv("N"))
     e = int(os.getenv("E"))
+
+    verified = verify_dr.__main__(dr_email, dr_pass)
+    if(not verified):
+        print("Healthcare professional not verified")
+        quit()
+    else:
+        print("Healthcare professional successfully verified")
 
 
     try:
@@ -108,5 +116,5 @@ def __main__(patientId, age, weight, height, reason, diagnosis, referrals, follo
     #     address=visit_record_trnxn_receipt.contractAddress, abi=visit_record_abi)
     # print(visit_record.functions.readRecord().call())
 
-    hashRecordTracker.set_patient_hash(int(patientId), hash)
+    hashRecordTracker.set_patient_hash(patientId, hash)
     return {'status': True,'res':"visit recorded, trxn receipt  = " +str(visit_record_trnxn_receipt)}

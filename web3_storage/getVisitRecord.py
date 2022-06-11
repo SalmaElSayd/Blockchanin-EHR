@@ -7,6 +7,7 @@ import os
 import csv
 import rsa
 from dotenv import load_dotenv
+import verify_dr
 load_dotenv()
 solcx.install_solc('0.8.0')
 
@@ -44,7 +45,7 @@ def print_visit_record(rec_list):
         'Blood Glucose: ' + str(rec_list[10]) + '\n' + \
         'Pulse: ' + str(rec_list[11]) + '\n' + \
         'Oxygen Level: ' + str(rec_list[12])
-def __main__(patient_id):
+def __main__(dr_email, dr_pass,patient_id):
     load_dotenv()
     solcx.install_solc('0.8.0')
 
@@ -88,6 +89,14 @@ def __main__(patient_id):
     # abi visit record
     initial_record_abi = compiled_sol_v_initial["contracts"]["InitialRecord.sol"]["InitialRecord"]["abi"]
 
+    verified = verify_dr.__main__(dr_email, dr_pass)
+    if(not verified):
+        print("Healthcare professional not verified")
+        quit()
+    else:
+        print("Healthcare professional successfully verified")
+
+
     w3 = Web3(Web3.HTTPProvider("http://127.0.0.1:7545"))
     chain_id = 1337
     my_address =os.getenv("ADDRESS")
@@ -99,7 +108,7 @@ def __main__(patient_id):
 
     # Getting the visit info
     try:
-        curr_record_hash = hashRecordTracker.get_patient_hash(patient_id)['hash']
+        curr_record_hash = hashRecordTracker.get_patient_hash(str(patient_id))['hash']
     except:
         print("Patient Id does not exist")
     else:

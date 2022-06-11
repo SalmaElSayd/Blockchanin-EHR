@@ -1,14 +1,14 @@
 import rsa
 import os
 from dotenv import load_dotenv
+import random
 
 def get_current_id():
     f = open('idCounter.txt','r')
     id = f.readline()
     f.close()
     load_dotenv()
-    print(id)
-    print(type(id))
+    id = str(id) +"-" + str(random.randint(100, 10000))
     return id
 
 def increment_current_id():

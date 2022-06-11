@@ -149,7 +149,7 @@ initial_record = w3.eth.contract(
     address=initial_record_trnxn_receipt.contractAddress, abi=initial_record_abi)
 # print(initial_record_abi)
 currentIdCounter.increment_current_id()
-hashRecordTracker.set_patient_hash(int(patientId), hash)
+hashRecordTracker.set_patient_hash(patientId, hash)
 print("New Patient ID: "+str(patientId))
 
 # Reading the record with encryption (Reem)
