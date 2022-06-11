@@ -11,7 +11,7 @@ import verify_dr
 load_dotenv()
 from Visit_Record import visit_record
 solcx.install_solc('0.8.0')
-def __main__(dr_email, dr_pass,patientId, age, weight, height, reason, diagnosis, referrals, follow_up, lab_tests, blood_pressure, blood_glucose, pulse, oxygen_level):
+def __main__(dr_email, dr_pass,patientId, age, weight, height, reason, diagnosis, referrals, follow_up, lab_tests, blood_pressure, blood_glucose, pulse, oxygen_level,lab_test_results):
 
     # connect to blockchain ganache
     w3 = Web3(Web3.HTTPProvider("http://127.0.0.1:7545"))
@@ -43,8 +43,7 @@ def __main__(dr_email, dr_pass,patientId, age, weight, height, reason, diagnosis
 
     verified = verify_dr.__main__(dr_email, dr_pass)
     if(not verified):
-        print("Healthcare professional not verified")
-        quit()
+        return {'status':0,'res':"Healthcare professional not verified"}
     else:
         print("Healthcare professional successfully verified")
 
@@ -86,7 +85,7 @@ def __main__(dr_email, dr_pass,patientId, age, weight, height, reason, diagnosis
         abi=visit_record_abi, bytecode=visit_record_bytecode)
 
     visit = visit_record(patientId, age, weight, height, reason, diagnosis, referrals,
-                        follow_up, lab_tests, blood_pressure, blood_glucose, pulse, oxygen_level)
+                        follow_up, lab_tests, blood_pressure, blood_glucose, pulse, oxygen_level,lab_test_results)
 
     # Encrpytion Process for patient
     dr_pub = rsa.PublicKey(n, e)

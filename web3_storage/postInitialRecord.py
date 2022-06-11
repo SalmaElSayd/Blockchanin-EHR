@@ -54,8 +54,7 @@ def __main__(dr_email, dr_pass,name,age,weight,height,female,blood_pressure,bloo
 
     verified = verify_dr.__main__(dr_email, dr_pass)
     if(not verified):
-        print("Healthcare professional not verified")
-        quit()
+        return {'status':0,'res':"Healthcare professional not verified"}
     else:
         print("Healthcare professional successfully verified")
 

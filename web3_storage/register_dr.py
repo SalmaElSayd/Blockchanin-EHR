@@ -25,3 +25,5 @@ with open('doctors.csv', 'a', newline='') as f_object:
     writer_object = writer(f_object)
     writer_object.writerow(dr_data)  
     f_object.close()
+
+
