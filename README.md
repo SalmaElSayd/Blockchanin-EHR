@@ -9,6 +9,10 @@ The following figure illustrates how the blockchain would look like after adding
 
 ![Screenshot 2022-06-05 231705](https://user-images.githubusercontent.com/47950134/172070968-f5306204-084c-4309-9ff1-b65a4ab58c80.png)
 
+## Sneak Peak 👀🤓
+![ezgif-3-e3b6811466](https://user-images.githubusercontent.com/47950134/173246138-e345cb88-9d60-4cd7-9fc7-853199667835.gif)
+
+
 ## Basic Info contract
 - name
 - age
