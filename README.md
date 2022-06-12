@@ -12,7 +12,20 @@ The following figure illustrates how the blockchain would look like after adding
 ## Sneak Peak 👀🤓
 ![ezgif-3-e3b6811466](https://user-images.githubusercontent.com/47950134/173246138-e345cb88-9d60-4cd7-9fc7-853199667835.gif)
 
+## Installation & Setup
 
+```bash
+> pip install web3
+> pip install py-solc-x
+> pip install rsa
+> pip install python-dotenv
+> pip install os-win
+> pip install flask
+> pip install pandas
+> cd web3_storage
+> python app.py
+
+```
 ## Basic Info contract
 - name
 - age
